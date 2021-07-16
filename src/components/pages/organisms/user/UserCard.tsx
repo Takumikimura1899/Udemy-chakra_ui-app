@@ -1,15 +1,17 @@
 import { Box, Image, Stack, Text } from '@chakra-ui/react';
-import { VFC, memo, ReactNode } from 'react';
+import { VFC, memo } from 'react';
 
 // 動的に変わるものをPropsとして受け取るのでその型を定義する
 type Props = {
+  id: number;
   imageUrl: string;
   userName: string;
   fullName: string;
+  onClick: (id: number) => void;
 };
 
 export const UserCard: VFC<Props> = memo(
-  ({ imageUrl, userName, fullName }: Props) => {
+  ({ id, imageUrl, userName, fullName, onClick }: Props) => {
     return (
       <Box
         w='260px'
@@ -19,6 +21,7 @@ export const UserCard: VFC<Props> = memo(
         shadow='md'
         p={4}
         _hover={{ cursor: 'pointer', opacity: 0.8 }}
+        onClick={() => onClick(id)}
       >
         <Stack textAlign='center'>
           <Image
